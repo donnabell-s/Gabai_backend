@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.db
+*.pkl
+
+# PostgreSQL credentials (optional)
+*.psql
+*.backup
+
+# Media and static files (optional)
+media/
+staticfiles/
+
+# Environment variables
+.env
+.env.*
+
+# VSCode and IDE configs
+.vscode/
+.idea/
+*.swp
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Migration files (optional if you're collaborating)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Firebase
+credentials/firebase-key.json
