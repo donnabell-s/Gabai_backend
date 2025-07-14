@@ -17,7 +17,6 @@ class LLMService:
     About their child:
     - Name: {child_profile.get('name')}
     - Age: {child_profile.get('age')}
-    - Grade Level: {child_profile.get('grade_level')}
     - Gender: {gender_str}
     - Screen Access: {"Yes" if child_profile.get('screen_access') else "No"}
     - Access Level: {"High" if child_profile.get('access_level') else "Low"}

@@ -11,6 +11,7 @@ django.setup()
 
 from django.conf import settings
 
+# Initialize Firebase if not already initialized
 if not firebase_admin._apps:
     cred = credentials.Certificate("credentials/firebase-key.json")
     firebase_admin.initialize_app(cred)
@@ -34,6 +35,7 @@ payload_template = {
     "messages": []
 }
 
+# ✅ Modified prompt with new tag rules and added 'family_structure'
 llm_prompt = """
 You are generating short, offline, proactive nudges for children aged 6 to 15. Each nudge should support cognitive or emotional development and match a specific behavioral profile.
 
@@ -50,8 +52,8 @@ Return 20 nudges in this exact JSON structure:
     "text": "example...",
     "target_profile": {
       "age": 9,
-      "grade_level": 4,
       "gender": 1,
+      "family_structure": 0,
       "screen_access": 1,
       "access_level": 1,
       "frequency_level": 1,
@@ -66,7 +68,14 @@ Return 20 nudges in this exact JSON structure:
 
 Tag rules for `target_profile`:
 - gender: 0 = male, 1 = female
-- screen_access: 1 = yes, 0 = no
+- family_structure:
+  - 0 = nuclear
+  - 1 = single-parent
+  - 2 = extended or other
+- screen_access:
+  - 0 = no access
+  - 1 = limited access
+  - 2 = unrestricted access
 - access_level: 1 = high, 0 = low
 - frequency_level: 1 = high, 0 = low
 - content_level: 1 = low content quality, 0 = high
