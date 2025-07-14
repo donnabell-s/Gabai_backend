@@ -21,4 +21,5 @@ from chatbot.views import ChatView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("chatbot.urls")),
+    path("api/", include("assessment.urls")),
 ]
