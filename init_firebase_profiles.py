@@ -12,21 +12,23 @@ if not firebase_admin._apps:
 
 db = firestore.client()
 
+# Delete existing child profiles
 children_ref = db.collection("children")
 existing_docs = children_ref.stream()
 
-print("Deleting existing child profiles...")
+print("🗑 Deleting existing child profiles...")
 for doc in existing_docs:
     doc.reference.delete()
     print(f"Deleted: {doc.id}")
 
+# Define new profiles
 child_profiles = {
     "1": {
         "name": "Jamie",
         "age": 9,
-        "gender": 1,  
+        "gender": 1,  # female
         "family_structure": 0, 
-        "screen_access": 1,   
+        "screen_access": 1,    
         "access_level": 1,
         "frequency_level": 1,
         "content_level": 1,
@@ -40,7 +42,7 @@ child_profiles = {
         "age": 10,
         "gender": 0,  # male
         "family_structure": 2,  
-        "screen_access": 2,     
+        "screen_access": 1,   
         "access_level": 0,
         "frequency_level": 0,
         "content_level": 0,
@@ -51,6 +53,7 @@ child_profiles = {
     }
 }
 
+# Insert new profiles
 print("\nInitializing new child profiles...")
 for user_id, profile in child_profiles.items():
     doc_ref = db.collection("children").document(user_id)

@@ -8,6 +8,12 @@ class LLMService:
     def build_prompt(self, child_profile, expert_chunks, query):
         gender_str = "female" if child_profile.get("gender") == 1 else "male"
         attention_map = ["not clinically significant", "mild symptoms", "severe symptoms"]
+        family_structure_map = {
+            0: "Lives with both parents",
+            1: "Lives with one parent",
+            2: "Lives with a guardian or someone else"
+        }
+        family_str = family_structure_map.get(child_profile.get("family_structure"), "Unknown")
 
         return f"""
     You are a parenting assistant helping parents raise emotionally resilient and well-regulated children.
@@ -18,6 +24,7 @@ class LLMService:
     - Name: {child_profile.get('name')}
     - Age: {child_profile.get('age')}
     - Gender: {gender_str}
+    - Family Structure: {family_str}
     - Screen Access: {"Yes" if child_profile.get('screen_access') else "No"}
     - Access Level: {"High" if child_profile.get('access_level') else "Low"}
     - Screen Time Frequency: {"High" if child_profile.get('frequency_level') else "Low"}
@@ -30,7 +37,7 @@ class LLMService:
     Relevant parenting guidance:
     {expert_chunks}
 
-    Respond with an age-appropriate, warm, and actionable suggestion. Keep the tone supportive, clear, and sensitive to the child's behavioral and emotional needs.
+    Respond with an age-appropriate, warm, and actionable suggestion. Keep the tone supportive, clear, and sensitive to the child's developmental and behavioral profile.
     """
 
     def call_deepseek(self, prompt):

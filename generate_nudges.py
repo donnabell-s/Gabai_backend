@@ -11,7 +11,6 @@ django.setup()
 
 from django.conf import settings
 
-# Initialize Firebase if not already initialized
 if not firebase_admin._apps:
     cred = credentials.Certificate("credentials/firebase-key.json")
     firebase_admin.initialize_app(cred)
@@ -35,7 +34,6 @@ payload_template = {
     "messages": []
 }
 
-# ✅ Modified prompt with new tag rules and added 'family_structure'
 llm_prompt = """
 You are generating short, offline, proactive nudges for children aged 6 to 15. Each nudge should support cognitive or emotional development and match a specific behavioral profile.
 
