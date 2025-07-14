@@ -25,14 +25,14 @@ for doc in existing_docs:
 child_profiles = {
     "1": {
         "name": "Jamie",
-        "age": 9,
-        "gender": 1,  # female
-        "family_structure": 0, 
-        "screen_access": 1,    
+        "age": 12,
+        "gender": 0,  # female
+        "family_structure": 1, 
+        "screen_access": 2,    
         "access_level": 1,
-        "frequency_level": 1,
-        "content_level": 1,
-        "interactivity_level": 1,
+        "frequency_level": 0,
+        "content_level": 0,
+        "interactivity_level": 0,
         "inattentive_result": 0,
         "hyperactive_result": 1,
         "oppositional_result": 0
